@@ -1,0 +1,43 @@
+const fs = require("fs");
+const vm = require("vm");
+const acorn = require("acorn");
+const interpret = require("../src/language");
+const { promisify } = require("util");
+const fsAccess = promisify(fs.access);
+const fsReadFile = promisify(fs.readFile);
+
+// CLI Argument Handling
+const fileName = process.argv[2];
+if (!fileName) {
+  console.log("Usage: sylheti <file.syl> or echo \"code\" | sylheti");
+  process.exit(1);
+}
+
+(async () => {
+  try {
+    let code;
+    try {
+      await fsAccess(fileName, fs.constants.F_OK);
+      code = await fsReadFile(fileName, "utf-8");
+    } catch {
+      code = fileName; // Direct code execution
+    }
+
+    const jsCode = interpret(code);
+    const parsedCode = acorn.parse(jsCode, { ecmaVersion: 2020 });
+    
+    const context = {
+      console,
+      require,
+      setTimeout,
+      setInterval,
+    };
+
+    vm.createContext(context);
+    vm.runInContext(jsCode, context, { timeout: process.env.SYLHETI_TIMEOUT || 5000 });
+
+    console.log("Execution successful!");
+  } catch (error) {
+    console.error("Execution failed:", error.stack);
+  }
+})();

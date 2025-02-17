@@ -1,0 +1,2 @@
+dororeba greeting = "Welcome to Sylheti Script!"
+dekareba(greeting)  // আউটপুট: Welcome to Sylheti Script!
