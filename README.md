@@ -20,7 +20,7 @@
 
 Sylheti Script ব্যবহার শুরু করতে, তোমার Node.js থাকতে হবে। তারপর, তুমি এটিকে গ্লোবালি ইনস্টল করতে পারো অথবা GitHub থেকে কোড ক্লোন করতে পারো।
 
-### npm-এর মাধ্যমে Sylheti Script ইনস্টল করো:
+### npm-এর মাধ্যমে Sylheti Script ইনস্টল করো (Not available):
 
 ```sh
 npm install -g sylheti-script

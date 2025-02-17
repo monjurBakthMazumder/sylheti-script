@@ -22,10 +22,6 @@ function interpret(code) {
     /barbar\s*\(\s*dororeba\s+(\w+)\s*=\s*(\d+)\s*;\s*([^;]+)\s*;\s*(\w+\s*=\s*\w+\s*[\+\-]\s*\d+)\s*\)\s*{([\s\S]+?)}/g,
     "for (let $1 = $2; $3; $1 = $1 + 1) {$5}"
   );
-    
-  
-      
-  
 
   // Fix conditionals (`jodi`, `naile`)
   code = code.replace(
@@ -52,10 +48,7 @@ function interpret(code) {
   );
 
   // Fix switch-case (`mile` and `naile`)
-  code = code.replace(
-    /mile \((.+)\) {([\s\S]+?)}/g,
-    "switch ($1) {$2}"
-  );
+  code = code.replace(/mile \((.+)\) {([\s\S]+?)}/g, "switch ($1) {$2}");
   code = code.replace(/"(.+)" {([\s\S]+?)}/g, 'case "$1": $2 break;');
   code = code.replace(/naile/g, "default:");
 
@@ -64,8 +57,6 @@ function interpret(code) {
     /kam (\w+)\s*=\s*\(([^)]*)\)\s*=>\s*([\s\S]+?);/g,
     "const $1 = ($2) => {$3};"
   );
-
-  console.log(code); // Debugging line to check intermediate code
 
   return code;
 }
