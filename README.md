@@ -24,7 +24,7 @@ npm install -g sylheti-script
 ### 2. অথবা GitHub থেকে কোড ক্লোন করে:
 
 ```sh
-git clone https://github.com/your-repo/sylheti-script.git
+git clone https://github.com/monjurBakthMazumder/sylheti-script
 cd sylheti-script
 npm install
 ```
