@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 function interpret(code) {
   // Fix function declarations FIRST
   code = code.replace(
